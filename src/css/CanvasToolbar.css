@@ -1,0 +1,17 @@
+.tool-container {
+  background-color: olivedrab;
+  padding: 10px;
+  max-width: fit-content;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.tool-column {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.list-item {
+  margin-bottom: 10px;
+}
