@@ -72,7 +72,7 @@ export const findElementWithText = (
   return traverseTree(root, namePath, 0);
 };
 
-const isTextElement = (
+export const isTextElement = (
   element: BaseElement | TextElement,
 ): element is TextElement => {
   return (element as TextElement).type === 'text';

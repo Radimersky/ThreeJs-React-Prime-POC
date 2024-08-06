@@ -3,6 +3,11 @@ import SceneParser from './SceneParser';
 import Canvas from './Canvas';
 import { Text } from '@react-three/drei';
 import { RootSceneElement } from './types/SceneTypes';
+import { SceneNode } from './SceneNode';
+import {
+  findTextElementValueOrThrow,
+  getSceneFromRootElementOrThrow,
+} from './SceneTreeTraversalHelpers';
 
 export const CanvasContainer: React.FC = () => {
   const [scenes, setScenes] = useState<RootSceneElement[]>([]);
@@ -30,8 +35,25 @@ export const CanvasContainer: React.FC = () => {
     [scenes],
   );
  */
+
+  const sceneComponents = useMemo(
+    () =>
+      scenes.map(rootSceneElement => {
+        const scene = getSceneFromRootElementOrThrow(rootSceneElement);
+        return (
+          <SceneNode
+            node={scene}
+            path={[]}
+            key={findTextElementValueOrThrow(scene, ['Name'])}
+          />
+        );
+      }),
+    [scenes],
+  );
+
   return (
     <>
+      {sceneComponents}
       <Canvas>
         <Text
           position={[250, 250, 0]}
