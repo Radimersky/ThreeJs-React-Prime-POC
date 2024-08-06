@@ -137,13 +137,13 @@ interface Canvas {
   Camera: string | null;
   UseFirstCamera: boolean;
   Layer: number;
-  Graphics: Graphics
+  Graphics: Graphics;
 }
 
 export interface Graphics {
-  Text?: Text[] 
-   Group?: Group[]
-   Image?: Image[];
+  Text?: Text[];
+  Group?: Group[];
+  Image?: Image[];
 }
 
 export interface Group {

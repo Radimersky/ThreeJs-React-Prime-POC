@@ -9,6 +9,8 @@ export const Scene: React.FC<SceneProps> = ({
   graphics,
   children,
 }) => {
+  // Create hook for text, image and groups and render them
+  // Give every element an GUID and save the structure into context and then each component will know which object to update in the context
   return (
     <group position={position} rotation={rotation} scale={scale}>
       {children}

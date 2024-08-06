@@ -2,20 +2,17 @@ import { useCallback, useMemo, useState } from 'react';
 import SceneParser from './SceneParser';
 import Canvas from './Canvas';
 import { Text } from '@react-three/drei';
-import { Scene } from './Scene';
-import { PrimeScene } from './types/PrimeScene';
-import { convertToVector } from './TypeConverters';
-import { degreesToEuler } from './MathUtils';
+import { RootSceneElement } from './types/SceneTypes';
 
 export const CanvasContainer: React.FC = () => {
-  const [scenes, setScenes] = useState<PrimeScene[]>([]);
+  const [scenes, setScenes] = useState<RootSceneElement[]>([]);
 
-  const handleParsedScenes = useCallback((scenes: PrimeScene[]) => {
+  const handleParsedScenes = useCallback((scenes: RootSceneElement[]) => {
     console.log(scenes);
     setScenes(scenes);
   }, []);
 
-  const sceneComponents = useMemo(
+  /*   const sceneComponents = useMemo(
     () =>
       scenes.map(scene => {
         const canvas = scene.Canvas;
@@ -32,7 +29,7 @@ export const CanvasContainer: React.FC = () => {
       }),
     [scenes],
   );
-
+ */
   return (
     <>
       <Canvas>
@@ -46,7 +43,7 @@ export const CanvasContainer: React.FC = () => {
         >
           Hello World
         </Text>
-        {sceneComponents}
+        {/*   {sceneComponents} */}
         {/*   <Scene position={[50, 5, 0]}>
           <Text
               position={[250, 250, 0]}

@@ -1,40 +1,51 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FileReaderComponent from './FileReaderComponent';
-import { XMLParser } from 'fast-xml-parser';
-import { PrimeScene, RootSceneContanier } from './types/PrimeScene';
+import { xml2js } from 'xml-js';
 import { ReadMode } from './types/ReadMode';
-
-const parserOptions = {
-  ignoreAttributes: false,
-  attributeNamePrefix: '',
-};
+import { RootSceneElement } from './types/SceneTypes';
+import { stringToNumberOrThrow } from './TypeConverters';
+import {
+  findTextElementValueOrThrow,
+  getSceneFromRootElementOrThrow,
+} from './SceneTreeTraversalHelpers';
 
 const SceneParser: React.FC<SceneParserProps> = ({ onScenesParsed }) => {
-  const [xmlParser] = useState<XMLParser>(new XMLParser(parserOptions));
-  const [scenes, setScenes] = useState<PrimeScene[]>([]);
+  const [scenes, setScenes] = useState<RootSceneElement[]>([]);
+
+  useEffect(() => {
+    onScenesParsed(scenes);
+  }, [scenes, onScenesParsed]);
 
   const handleFileContent = (fileContent: string | ArrayBuffer) => {
     if (fileContent instanceof ArrayBuffer) {
-      parseXml(Buffer.from(fileContent));
+      parseXml(new TextDecoder('utf-8').decode(fileContent));
     } else {
       parseXml(fileContent);
     }
   };
 
-  const parseXml = (xmlContent: string | Buffer) => {
-    // TODO Implement type guards
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const jsXmlContent = xmlParser.parse(xmlContent) as RootSceneContanier;
-    console.log(jsXmlContent);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    const sortedScenes = [...scenes, jsXmlContent.Scene].sort(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      (a, b) => b.Canvas.Layer - a.Canvas.Layer,
-    );
+  const parseXml = (xmlContent: string) => {
+    const parsedContent = xml2js(xmlContent, {
+      compact: false,
+      alwaysChildren: true,
+    });
 
-    setScenes(sortedScenes);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    onScenesParsed(sortedScenes);
+    console.log(parsedContent);
+    const rootElement = parsedContent as RootSceneElement;
+    console.log(rootElement);
+
+    setScenes(scenes => {
+      const sortedScenes = [...scenes, rootElement].sort((rootA, rootB) => {
+        const sceneA = getSceneFromRootElementOrThrow(rootA);
+        const sceneB = getSceneFromRootElementOrThrow(rootB);
+
+        const path = ['Canvas', 'Layer'];
+        const layerA = findTextElementValueOrThrow(sceneA, path);
+        const layerB = findTextElementValueOrThrow(sceneB, path);
+        return stringToNumberOrThrow(layerB) - stringToNumberOrThrow(layerA);
+      });
+      return sortedScenes;
+    });
   };
 
   return (
@@ -50,7 +61,7 @@ const SceneParser: React.FC<SceneParserProps> = ({ onScenesParsed }) => {
 };
 
 type SceneParserProps = {
-  onScenesParsed: (scenes: PrimeScene[]) => void;
+  onScenesParsed: (scenes: RootSceneElement[]) => void;
 };
 
 export default SceneParser;
