@@ -1,22 +1,19 @@
 import { BaseElement, TextElement, RootSceneElement } from './types/SceneTypes';
 
-export const selectBaseElementByName = (
-  parrent: BaseElement,
-  name: string,
-): BaseElement | null => {
-  for (const element of parrent.elements) {
-    if (element.type !== 'element') {
-      continue;
-    }
-
-    if (element.name === name) {
-      return element;
-    }
+export const getSceneFromRootElementOrThrow = (
+  rootElement: RootSceneElement,
+): BaseElement => {
+  const rootElementChildrenLength = rootElement.elements.length;
+  if (rootElementChildrenLength === 1) {
+    return rootElement.elements[0];
   }
-  return null;
+
+  throw new Error(
+    `RootElement should have exactly one child element but has ${rootElementChildrenLength}`,
+  );
 };
 
-export const getTextElementValueOrThrow = (
+const getTextElementValueOrThrow = (
   textElementParrent: BaseElement,
 ): string => {
   if (textElementParrent.elements.length !== 1) {
@@ -36,6 +33,22 @@ export const getTextElementValueOrThrow = (
   return childElement.text;
 };
 
+export const getTextElementValue = (
+  textElementParrent: BaseElement,
+): string | null => {
+  if (textElementParrent.elements.length === 0) {
+    return null;
+  }
+
+  const childElement = textElementParrent.elements[0];
+
+  if (!isTextElement(childElement)) {
+    return null;
+  }
+
+  return childElement.text;
+};
+
 const hasExactlyOneTextElement = (element: BaseElement): boolean => {
   const textElements = element.elements.filter(
     (el): el is TextElement => el.type === 'text',
@@ -43,7 +56,7 @@ const hasExactlyOneTextElement = (element: BaseElement): boolean => {
   return textElements.length === 1;
 };
 
-export const findElementWithText = (
+const selectParrentOfTextElement = (
   root: BaseElement,
   namePath: string[],
 ): BaseElement | null => {
@@ -72,17 +85,32 @@ export const findElementWithText = (
   return traverseTree(root, namePath, 0);
 };
 
+export const selectBaseElementChildOrThrow = (
+  parrentElement: BaseElement,
+  childName: string,
+): BaseElement => {
+  for (const el of parrentElement.elements) {
+    if (el.type === 'element' && el.name === childName) {
+      return el;
+    }
+  }
+
+  throw new Error(
+    `Child element ${childName} cannot be found for parrent ${parrentElement.name}.`,
+  );
+};
+
 export const isTextElement = (
   element: BaseElement | TextElement,
 ): element is TextElement => {
   return (element as TextElement).type === 'text';
 };
 
-export const findTextElementValueOrThrow = (
+export const selectTextElementValueOrThrow = (
   root: BaseElement,
   namePath: string[],
 ): string => {
-  const baseElementWithTextElement = findElementWithText(root, namePath);
+  const baseElementWithTextElement = selectParrentOfTextElement(root, namePath);
 
   if (!baseElementWithTextElement) {
     throw new Error(`Path does not exists: ${namePath.join(' -> ')}`);
@@ -91,15 +119,66 @@ export const findTextElementValueOrThrow = (
   return getTextElementValueOrThrow(baseElementWithTextElement);
 };
 
-export const getSceneFromRootElementOrThrow = (
-  rootElement: RootSceneElement,
-): BaseElement => {
-  const rootElementChildrenLength = rootElement.elements.length;
-  if (rootElementChildrenLength === 1) {
-    return rootElement.elements[0];
+export const selectTextElementValue = (
+  root: BaseElement,
+  namePath: string[],
+): string | null => {
+  const baseElementWithTextElement = selectParrentOfTextElement(root, namePath);
+
+  if (!baseElementWithTextElement) {
+    return null;
   }
 
-  throw new Error(
-    `RootElement should have exactly one child element but has ${rootElementChildrenLength}`,
-  );
+  return getTextElementValue(baseElementWithTextElement);
 };
+
+export const selectElement = (
+  root: BaseElement,
+  namePath: string[],
+): BaseElement | null => {
+  return traverseTree(root, namePath, 0);
+};
+
+export const selectElementOrThrow = (
+  root: BaseElement,
+  namePath: string[],
+): BaseElement => {
+  const element = selectElement(root, namePath);
+
+  if (!element) {
+    throw new Error(
+      `Element on given path does not exists: ${namePath.join(' -> ')}`,
+    );
+  }
+
+  return element;
+};
+
+const traverseTree = (
+  element: BaseElement,
+  namePath: string[],
+  index: number,
+): BaseElement | null => {
+  if (index === namePath.length) {
+    return element;
+  }
+
+  for (const el of element.elements) {
+    if (el.type === 'element' && el.name === namePath[index]) {
+      const result = traverseTree(el, namePath, index + 1);
+      if (result) {
+        return result;
+      }
+    }
+  }
+
+  return null;
+};
+
+export function getAttributesOrThrow<T>(element: BaseElement): T {
+  if (!element.attributes) {
+    throw new Error(`Element ${element.name} does not have attributes.`);
+  }
+
+  return element.attributes as T;
+}

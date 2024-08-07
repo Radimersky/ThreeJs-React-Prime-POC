@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { CanvasContext } from './oldFiles/CanvasContextProvider';
+import { CanvasContext } from './CanvasContextProvider';
 import { CANVAS_BACKGROUND, MAX_CANVAS_SIZE } from './Constants';
 import { calculateCanvasScalingFactor } from './MathUtils';
 import { Size } from './types/Size';
@@ -7,8 +7,7 @@ import { Canvas as ThreeCanvas } from '@react-three/fiber';
 import { OrthographicCamera } from '@react-three/drei';
 
 const Canvas: React.FC<CanvasProps> = ({ children }) => {
-  const [, sceneSize, , initCanvas, , setScalingFactor] =
-    useContext(CanvasContext);
+  const [sceneSize, , , setScalingFactor] = useContext(CanvasContext);
 
   const [canvasSize, setCanvasSize] = useState<Size>(MAX_CANVAS_SIZE);
 
@@ -24,13 +23,9 @@ const Canvas: React.FC<CanvasProps> = ({ children }) => {
         }
       : MAX_CANVAS_SIZE;
 
-    //const canvas = createCanvas(scaledSize.Width, scaledSize.Height);
-    //applyGlobalObjectTransformation(canvas);
-    //canvas.requestRenderAll();
-
-    //initCanvas(canvas);
     setScalingFactor(scalingFactor);
-  }, [initCanvas, sceneSize, setScalingFactor]);
+    setCanvasSize(scaledSize);
+  }, [sceneSize, setScalingFactor]);
 
   const { Width, Height } = canvasSize;
 

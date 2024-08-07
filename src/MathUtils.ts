@@ -23,3 +23,14 @@ export const degreesToEuler = (degrees: Point3D): Euler => {
     degreesToRadians(degrees.Z),
   ];
 };
+
+export const scalePoint3D = (
+  point: Point3D,
+  scalingFactor: number,
+): Point3D => {
+  return {
+    X: point.X * scalingFactor,
+    Y: point.Y * scalingFactor,
+    Z: point.Z * scalingFactor,
+  };
+};

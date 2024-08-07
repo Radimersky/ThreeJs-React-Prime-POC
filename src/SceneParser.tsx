@@ -5,7 +5,7 @@ import { ReadMode } from './types/ReadMode';
 import { RootSceneElement } from './types/SceneTypes';
 import { stringToNumberOrThrow } from './TypeConverters';
 import {
-  findTextElementValueOrThrow,
+  selectTextElementValueOrThrow,
   getSceneFromRootElementOrThrow,
 } from './SceneTreeTraversalHelpers';
 
@@ -40,8 +40,8 @@ const SceneParser: React.FC<SceneParserProps> = ({ onScenesParsed }) => {
         const sceneB = getSceneFromRootElementOrThrow(rootB);
 
         const path = ['Canvas', 'Layer'];
-        const layerA = findTextElementValueOrThrow(sceneA, path);
-        const layerB = findTextElementValueOrThrow(sceneB, path);
+        const layerA = selectTextElementValueOrThrow(sceneA, path);
+        const layerB = selectTextElementValueOrThrow(sceneB, path);
         return stringToNumberOrThrow(layerB) - stringToNumberOrThrow(layerA);
       });
       return sortedScenes;
