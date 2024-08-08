@@ -1,8 +1,7 @@
 import { useCallback, useContext, useMemo, useState } from 'react';
 import SceneParser from './SceneParser';
 import Canvas from './Canvas';
-import { RootSceneElement } from './types/SceneTypes';
-import { SceneNode } from './SceneNode';
+import { BaseElement, RootSceneElement, TextElement } from './types/SceneTypes';
 import {
   selectTextElementValueOrThrow,
   getSceneFromRootElementOrThrow,
@@ -11,6 +10,7 @@ import {
 } from './SceneTreeTraversalHelpers';
 import { CanvasContext } from './CanvasContextProvider';
 import { Size } from './types/Size';
+import { SceneGroup } from './SceneGroup';
 
 const getSceneSize = (rootSceneElement: RootSceneElement): Size => {
   const scene = getSceneFromRootElementOrThrow(rootSceneElement);
@@ -21,6 +21,46 @@ const getSceneSize = (rootSceneElement: RootSceneElement): Size => {
   ]);
 
   return getAttributesOrThrow<Size>(sizeElement);
+};
+
+const updateNode = (
+  node: BaseElement | TextElement,
+  path: number[],
+  newValue: BaseElement | TextElement,
+): BaseElement | TextElement => {
+  if (path.length === 0) {
+    return { ...node, ...newValue };
+  }
+
+  if (node.type === 'element') {
+    const [head, ...tail] = path;
+    return {
+      ...node,
+      elements: node.elements.map((element, index) =>
+        index === head ? updateNode(element, tail, newValue) : element,
+      ),
+    };
+  }
+
+  return node;
+};
+
+type Action = {
+  type: 'update';
+  path: number[];
+  newValue: BaseElement | TextElement;
+};
+
+const baseElementReducer = (
+  state: BaseElement,
+  action: Action,
+): BaseElement => {
+  switch (action.type) {
+    case 'update':
+      return updateNode(state, action.path, action.newValue) as BaseElement;
+    default:
+      return state;
+  }
 };
 
 export const CanvasContainer: React.FC = () => {
@@ -43,9 +83,8 @@ export const CanvasContainer: React.FC = () => {
       scenes.map(rootSceneElement => {
         const scene = getSceneFromRootElementOrThrow(rootSceneElement);
         return (
-          <SceneNode
-            node={scene}
-            path={[]}
+          <SceneGroup
+            scene={scene}
             key={selectTextElementValueOrThrow(scene, ['Name'])}
           />
         );

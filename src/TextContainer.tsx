@@ -3,7 +3,7 @@ import { CanvasContext } from './CanvasContextProvider';
 import { degreesToEuler, scalePoint3D } from './MathUtils';
 import {
   getAttributesOrThrow,
-  selectBaseElementChildOrThrow as selectChildOrThrow,
+  selectBaseElementChildOrThrow,
   selectElementOrThrow,
   selectTextElementValue,
   selectTextElementValueOrThrow,
@@ -17,13 +17,13 @@ export const TextContainer: React.FC<TextProps> = ({ node, path }) => {
   const [, scalingFactor] = useContext(CanvasContext);
 
   const scale = getAttributesOrThrow<Point3D>(
-    selectChildOrThrow(node, 'Scale'),
+    selectBaseElementChildOrThrow(node, 'Scale'),
   );
   const position = getAttributesOrThrow<Point3D>(
-    selectChildOrThrow(node, 'Position'),
+    selectBaseElementChildOrThrow(node, 'Position'),
   );
   const rotation = getAttributesOrThrow<Point3D>(
-    selectChildOrThrow(node, 'Rotation'),
+    selectBaseElementChildOrThrow(node, 'Rotation'),
   );
 
   const opacity = stringToNumberOrThrow(
