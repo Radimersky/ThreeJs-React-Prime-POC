@@ -13,7 +13,7 @@ import { Point3D } from './types/Point';
 import { BaseElement } from './types/SceneTypes';
 import { Text } from '@react-three/drei';
 
-export const TextContainer: React.FC<TextProps> = ({ node, path }) => {
+export const TextNode: React.FC<TextNodeProps> = ({ node, path }) => {
   const [, scalingFactor] = useContext(CanvasContext);
 
   const scale = getAttributesOrThrow<Point3D>(
@@ -58,7 +58,7 @@ export const TextContainer: React.FC<TextProps> = ({ node, path }) => {
   );
 };
 
-type TextProps = {
+type TextNodeProps = {
   node: BaseElement;
   path: number[];
 };

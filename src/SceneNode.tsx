@@ -1,6 +1,6 @@
 import { isTextElement } from './SceneTreeTraversalHelpers';
 import { BaseElement, TextElement } from './types/SceneTypes';
-import { TextContainer } from './TextContainer';
+import { TextNode } from './TextNode';
 
 export const SceneNode: React.FC<SceneNodeProps> = ({ node, path }) => {
   if (isTextElement(node)) {
@@ -11,7 +11,7 @@ export const SceneNode: React.FC<SceneNodeProps> = ({ node, path }) => {
     /* case 'Image':
       return <ImageComponent node={node} path={path} />; */
     case 'Text':
-      return <TextContainer node={node} path={path} />;
+      return <TextNode node={node} path={path} />;
     /* case 'Group':
       return (
         <group>
