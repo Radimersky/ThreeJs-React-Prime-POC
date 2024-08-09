@@ -13,6 +13,7 @@ import { Size } from './types/Size';
 import { SceneGroup } from './SceneGroup';
 import { SceneContext, SceneUpdateContext } from './SceneContextProvider';
 import { SceneNodeControll } from './SceneNodeControll';
+import { convertToXml } from './MathUtils';
 
 const getSceneSize = (rootSceneElement: RootSceneElement): Size => {
   const scene = getSceneFromRootElementOrThrow(rootSceneElement);
@@ -71,11 +72,18 @@ export const CanvasContainer: React.FC = () => {
     [rootSceneElements],
   );
 
+  const handleConvertToXml = () => {
+    const xmls = convertToXml(rootSceneElements);
+    console.log(xmls);
+    window.alert('XMLs are printed to console.');
+  };
+
   return (
     <>
       <Canvas>{sceneComponents}</Canvas>
       <div className="tool-container">
         <SceneParser onScenesParsed={handleParsedScenes} />
+        <button onClick={handleConvertToXml}>Convert back to XML</button>
       </div>
       {sceneControllComponents}
     </>

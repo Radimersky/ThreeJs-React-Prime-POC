@@ -2,6 +2,8 @@ import { Euler } from '@react-three/fiber';
 import { MAX_CANVAS_SIZE } from './Constants';
 import { Point3D } from './types/Point';
 import { Size } from './types/Size';
+import { js2xml } from 'xml-js';
+import { RootSceneElement } from './types/SceneTypes';
 
 export const calculateCanvasScalingFactor = (original: Size): number => {
   const widthScalingFactor = MAX_CANVAS_SIZE.Width / original.Width;
@@ -33,4 +35,9 @@ export const scalePoint3D = (
     Y: point.Y * scalingFactor,
     Z: point.Z * scalingFactor,
   };
+};
+
+export const convertToXml = (scenes: RootSceneElement[]) => {
+  const xml = scenes.map(scene => js2xml(scene));
+  return xml;
 };

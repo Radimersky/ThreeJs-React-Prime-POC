@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import FileReaderComponent from './FileReaderComponent';
-import { xml2js } from 'xml-js';
+import { xml2js, js2xml } from 'xml-js';
 import { ReadMode } from './types/ReadMode';
 import { RootSceneElement } from './types/SceneTypes';
 import { stringToNumberOrThrow } from './TypeConverters';
@@ -32,7 +32,6 @@ const SceneParser: React.FC<SceneParserProps> = ({ onScenesParsed }) => {
 
     console.log(parsedContent);
     const rootElement = parsedContent as RootSceneElement;
-    console.log(rootElement);
 
     setScenes(scenes => {
       const sortedScenes = [...scenes, rootElement].sort((rootA, rootB) => {
@@ -55,7 +54,6 @@ const SceneParser: React.FC<SceneParserProps> = ({ onScenesParsed }) => {
         onFileRead={handleFileContent}
         readMode={ReadMode.File}
       />
-      <button onClick={() => setScenes([])}>Reset</button>
     </div>
   );
 };
