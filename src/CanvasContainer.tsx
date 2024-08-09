@@ -12,6 +12,7 @@ import { CanvasContext } from './CanvasContextProvider';
 import { Size } from './types/Size';
 import { SceneGroup } from './SceneGroup';
 import { SceneContext, SceneUpdateContext } from './SceneContextProvider';
+import { SceneNodeControll } from './SceneNodeControll';
 
 const getSceneSize = (rootSceneElement: RootSceneElement): Size => {
   const scene = getSceneFromRootElementOrThrow(rootSceneElement);
@@ -40,19 +41,35 @@ export const CanvasContainer: React.FC = () => {
     [setSceneSize, setNewRootSceneElements],
   );
 
-  const sceneComponents = useMemo(() => {
-    console.log(rootSceneElements);
-    const el = rootSceneElements.map(rootSceneElement => {
-      const scene = getSceneFromRootElementOrThrow(rootSceneElement);
-      return (
-        <SceneGroup
-          scene={scene}
-          key={selectTextElementValueOrThrow(scene, ['Name'])}
-        />
-      );
-    });
-    return el;
-  }, [rootSceneElements]);
+  const sceneComponents = useMemo(
+    () =>
+      rootSceneElements.map(rootSceneElement => {
+        const scene = getSceneFromRootElementOrThrow(rootSceneElement);
+        return (
+          <SceneGroup
+            scene={scene}
+            key={selectTextElementValueOrThrow(scene, ['Name'])}
+          />
+        );
+      }),
+    [rootSceneElements],
+  );
+
+  const sceneControllComponents = useMemo(
+    () =>
+      rootSceneElements.map((rootSceneElement, index) => {
+        const scene = getSceneFromRootElementOrThrow(rootSceneElement);
+        return (
+          <div
+            className="tool-container"
+            key={selectTextElementValueOrThrow(scene, ['Name'])}
+          >
+            <SceneNodeControll rootSceneIndex={index} node={scene} path={[]} />
+          </div>
+        );
+      }),
+    [rootSceneElements],
+  );
 
   return (
     <>
@@ -60,6 +77,7 @@ export const CanvasContainer: React.FC = () => {
       <div className="tool-container">
         <SceneParser onScenesParsed={handleParsedScenes} />
       </div>
+      {sceneControllComponents}
     </>
   );
 };

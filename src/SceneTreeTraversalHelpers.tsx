@@ -129,7 +129,35 @@ export const selectTextElementValue = (
     return null;
   }
 
-  return getTextElementValue(baseElementWithTextElement);
+  return getTextElement(baseElementWithTextElement)?.text ?? null;
+};
+
+export const getTextElement = (
+  textElementParrent: BaseElement,
+): TextElement | null => {
+  if (textElementParrent.elements.length === 0) {
+    return null;
+  }
+
+  const childElement = textElementParrent.elements[0];
+
+  if (!isTextElement(childElement)) {
+    return null;
+  }
+
+  return childElement;
+};
+
+export const getTextElementOrThrow = (
+  textElementParrent: BaseElement,
+): TextElement => {
+  const element = getTextElement(textElementParrent);
+
+  if (!element) {
+    throw new Error('Text element not found.');
+  }
+
+  return element;
 };
 
 export const selectElement = (

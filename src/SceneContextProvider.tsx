@@ -23,6 +23,10 @@ const replaceElement = (
   path: number[],
   newValue: BaseElement | TextElement,
 ): BaseElement | TextElement => {
+  if (path.length === 0) {
+    return newValue;
+  }
+
   if (node.type === 'element') {
     const [head, ...tail] = path;
     return {
