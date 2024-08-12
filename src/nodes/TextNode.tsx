@@ -1,16 +1,16 @@
 import { useContext } from 'react';
-import { CanvasContext } from './contextProviders/CanvasContextProvider';
-import { degreesToEuler, scalePoint3D } from './MathUtils';
+import { CanvasContext } from '../contextProviders/CanvasContextProvider';
+import { degreesToEuler, scalePoint3D } from '../MathUtils';
 import {
   getAttributesOrThrow,
   selectBaseElementChildOrThrow,
   selectElementOrThrow,
   selectTextElementValue,
   selectTextElementValueOrThrow,
-} from './SceneTreeTraversalHelpers';
-import { convertToVector, stringToNumberOrThrow } from './TypeConverters';
-import { Point3D } from './types/Point';
-import { BaseElement } from './types/SceneTypes';
+} from '../SceneTreeTraversalHelpers';
+import { convertToVector, stringToNumberOrThrow } from '../TypeConverters';
+import { Point3D } from '../types/Point';
+import { BaseElement } from '../types/SceneTypes';
 import { Text } from '@react-three/drei';
 
 export const TextNode: React.FC<TextNodeProps> = ({ node }) => {

@@ -1,5 +1,5 @@
-import { isTextElement } from './SceneTreeTraversalHelpers';
-import { BaseElement, TextElement } from './types/SceneTypes';
+import { isTextElement } from '../SceneTreeTraversalHelpers';
+import { BaseElement, TextElement } from '../types/SceneTypes';
 import { TextNode } from './TextNode';
 import { ImageNode } from './ImageNode';
 

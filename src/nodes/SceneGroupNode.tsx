@@ -1,14 +1,14 @@
-import { BaseElement } from './types/SceneTypes';
+import { BaseElement } from '../types/SceneTypes';
 import {
   selectElementOrThrow,
   getAttributesOrThrow,
   selectBaseElementChildOrThrow,
-} from './SceneTreeTraversalHelpers';
-import { Point3D } from './types/Point';
-import { scalePoint3D, degreesToEuler } from './MathUtils';
-import { convertToVector } from './TypeConverters';
+} from '../SceneTreeTraversalHelpers';
+import { Point3D } from '../types/Point';
+import { scalePoint3D, degreesToEuler } from '../MathUtils';
+import { convertToVector } from '../TypeConverters';
 import { useContext } from 'react';
-import { CanvasContext } from './contextProviders/CanvasContextProvider';
+import { CanvasContext } from '../contextProviders/CanvasContextProvider';
 import { BaseNode } from './BaseNode';
 
 export const SceneGroupNode: React.FC<SceneGroupNodeProps> = ({

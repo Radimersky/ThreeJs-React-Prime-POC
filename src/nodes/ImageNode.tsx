@@ -1,17 +1,17 @@
 import { useContext } from 'react';
-import { CanvasContext } from './contextProviders/CanvasContextProvider';
-import { degreesToEuler, scalePoint3D } from './MathUtils';
+import { CanvasContext } from '../contextProviders/CanvasContextProvider';
+import { degreesToEuler, scalePoint3D } from '../MathUtils';
 import {
   getAttributesOrThrow,
   selectBaseElementChildOrThrow,
-} from './SceneTreeTraversalHelpers';
-import { convertToVector } from './TypeConverters';
-import { Point3D } from './types/Point';
-import { BaseElement } from './types/SceneTypes';
+} from '../SceneTreeTraversalHelpers';
+import { convertToVector } from '../TypeConverters';
+import { Point3D } from '../types/Point';
+import { BaseElement } from '../types/SceneTypes';
 import { Image } from '@react-three/drei';
-import { useImageUrl } from './UseImageUrl';
-import { createImageUrlKey } from './HelperFunctions';
-import { Size } from './types/Size';
+import { useImageUrl } from '../UseImageUrl';
+import { createImageUrlKey } from '../HelperFunctions';
+import { Size } from '../types/Size';
 
 export const ImageNode: React.FC<ImageNodeProps> = ({
   node,

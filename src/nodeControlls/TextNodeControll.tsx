@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react';
-import { SceneUpdateContext } from './contextProviders/SceneContextProvider';
-import { BaseElement } from './types/SceneTypes';
+import { SceneUpdateContext } from '../contextProviders/SceneContextProvider';
+import { BaseElement } from '../types/SceneTypes';
 import {
   getTextElement,
   selectBaseElementChildOrThrow,
   selectTextElementValue,
   selectTextElementValueOrThrow,
-} from './SceneTreeTraversalHelpers';
+} from '../SceneTreeTraversalHelpers';
 
 export const TextNodeControll: React.FC<TextNodeControllProps> = ({
   path,

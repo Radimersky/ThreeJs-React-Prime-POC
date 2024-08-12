@@ -10,12 +10,12 @@ import {
 } from './SceneTreeTraversalHelpers';
 import { CanvasContext } from './contextProviders/CanvasContextProvider';
 import { Size } from './types/Size';
-import { SceneGroupNode } from './SceneGroupNode';
+import { SceneGroupNode } from './nodes/SceneGroupNode';
 import {
   SceneContext,
   SceneUpdateContext,
 } from './contextProviders/SceneContextProvider';
-import { BaseNodeControll } from './BaseNodeControll';
+import { BaseNodeControll } from './nodeControlls/BaseNodeControll';
 import { convertToXml } from './MathUtils';
 
 const getSceneSize = (rootSceneElement: RootSceneElement): Size => {

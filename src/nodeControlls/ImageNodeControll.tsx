@@ -1,9 +1,9 @@
-import { createImageUrlKey } from './HelperFunctions.ts';
-import { BaseElement } from './types/SceneTypes';
-import FileReaderComponent from './FileReaderComponent';
-import { ReadMode } from './types/ReadMode';
-import { selectTextElementValue } from './SceneTreeTraversalHelpers';
-import { useImageUrl } from './UseImageUrl';
+import { createImageUrlKey } from '../HelperFunctions.ts';
+import { BaseElement } from '../types/SceneTypes';
+import FileReaderComponent from '../FileReaderComponent';
+import { ReadMode } from '../types/ReadMode';
+import { selectTextElementValue } from '../SceneTreeTraversalHelpers';
+import { useImageUrl } from '../UseImageUrl';
 
 export const ImageNodeControll: React.FC<ImageNodeControllProps> = ({
   path,
