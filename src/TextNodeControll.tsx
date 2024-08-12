@@ -55,17 +55,15 @@ export const TextNodeControll: React.FC<TextNodeControllProps> = ({
         updatedTextNode,
       );
     }
-    // TODO check if emtpy text element can be filled with text
-    // If text element is empty, push only empty element array
   };
 
   const name = selectTextElementValueOrThrow(node, ['Name']);
 
   return (
-    <>
+    <div className="list-item">
       <span>{name}: </span>
       <input type="text" value={text} onChange={handleInputChange} />
-    </>
+    </div>
   );
 };
 

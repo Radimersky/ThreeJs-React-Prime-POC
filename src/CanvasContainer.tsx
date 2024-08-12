@@ -10,9 +10,9 @@ import {
 } from './SceneTreeTraversalHelpers';
 import { CanvasContext } from './CanvasContextProvider';
 import { Size } from './types/Size';
-import { SceneGroup } from './SceneGroup';
+import { SceneGroupNode } from './SceneGroupNode';
 import { SceneContext, SceneUpdateContext } from './SceneContextProvider';
-import { SceneNodeControll } from './SceneNodeControll';
+import { BaseNodeControll } from './BaseNodeControll';
 import { convertToXml } from './MathUtils';
 
 const getSceneSize = (rootSceneElement: RootSceneElement): Size => {
@@ -44,10 +44,11 @@ export const CanvasContainer: React.FC = () => {
 
   const sceneComponents = useMemo(
     () =>
-      rootSceneElements.map(rootSceneElement => {
+      rootSceneElements.map((rootSceneElement, index) => {
         const scene = getSceneFromRootElementOrThrow(rootSceneElement);
         return (
-          <SceneGroup
+          <SceneGroupNode
+            rootSceneIndex={index}
             scene={scene}
             key={selectTextElementValueOrThrow(scene, ['Name'])}
           />
@@ -65,7 +66,7 @@ export const CanvasContainer: React.FC = () => {
             className="tool-container"
             key={selectTextElementValueOrThrow(scene, ['Name'])}
           >
-            <SceneNodeControll rootSceneIndex={index} node={scene} path={[]} />
+            <BaseNodeControll rootSceneIndex={index} node={scene} path={[]} />
           </div>
         );
       }),

@@ -40,7 +40,6 @@ const Canvas: React.FC<CanvasProps> = ({ children }) => {
           position={[Width / 2, Height / 2, 1000]}
           zoom={1}
         />
-        {/* <ambientLight intensity={0.5} /> */}
         {children}
       </ThreeCanvas>
     </div>

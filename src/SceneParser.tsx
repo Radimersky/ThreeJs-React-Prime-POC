@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import FileReaderComponent from './FileReaderComponent';
-import { xml2js, js2xml } from 'xml-js';
+import { xml2js } from 'xml-js';
 import { ReadMode } from './types/ReadMode';
 import { RootSceneElement } from './types/SceneTypes';
 import { stringToNumberOrThrow } from './TypeConverters';

@@ -9,9 +9,12 @@ import { scalePoint3D, degreesToEuler } from './MathUtils';
 import { convertToVector } from './TypeConverters';
 import { useContext } from 'react';
 import { CanvasContext } from './CanvasContextProvider';
-import { SceneNode } from './SceneNode';
+import { BaseNode } from './BaseNode';
 
-export const SceneGroup: React.FC<SceneGroupProps> = ({ scene }) => {
+export const SceneGroupNode: React.FC<SceneGroupNodeProps> = ({
+  scene,
+  rootSceneIndex,
+}) => {
   const [, scalingFactor, ,] = useContext(CanvasContext);
 
   const canvas = selectElementOrThrow(scene, ['Canvas']);
@@ -32,11 +35,12 @@ export const SceneGroup: React.FC<SceneGroupProps> = ({ scene }) => {
       position={convertToVector(scalePoint3D(position, scalingFactor))}
       rotation={degreesToEuler(rotation)}
     >
-      <SceneNode node={scene} path={[]} />
+      <BaseNode node={scene} path={[]} rootSceneIndex={rootSceneIndex} />
     </group>
   );
 };
 
-export type SceneGroupProps = {
+export type SceneGroupNodeProps = {
   scene: BaseElement;
+  rootSceneIndex: number;
 };

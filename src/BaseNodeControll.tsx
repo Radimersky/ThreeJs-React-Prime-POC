@@ -1,8 +1,9 @@
 import { isTextElement } from './SceneTreeTraversalHelpers';
 import { BaseElement, TextElement } from './types/SceneTypes';
 import { TextNodeControll } from './TextNodeControll';
+import { ImageNodeControll } from './ImageNodeControll';
 
-export const SceneNodeControll: React.FC<SceneNodeControllProps> = ({
+export const BaseNodeControll: React.FC<BaseNodeControllProps> = ({
   node,
   rootSceneIndex,
   path,
@@ -12,8 +13,14 @@ export const SceneNodeControll: React.FC<SceneNodeControllProps> = ({
   }
 
   switch (node.name) {
-    /* case 'Image':
-      return <ImageComponent node={node} path={path} />; */
+    case 'Image':
+      return (
+        <ImageNodeControll
+          node={node}
+          path={path}
+          rootSceneIndex={rootSceneIndex}
+        />
+      );
     case 'Text':
       return (
         <TextNodeControll
@@ -22,19 +29,11 @@ export const SceneNodeControll: React.FC<SceneNodeControllProps> = ({
           rootSceneIndex={rootSceneIndex}
         />
       );
-    /* case 'Group':
-      return (
-        <group>
-          {node.children.map((child, index) => (
-            <TreeNode key={index} node={child} path={[...path, index]} />
-          ))}
-        </group>
-      ); */
     default: {
       return (
         <>
           {node.elements.map((child, index) => (
-            <SceneNodeControll
+            <BaseNodeControll
               key={index}
               node={child}
               rootSceneIndex={rootSceneIndex}
@@ -47,7 +46,7 @@ export const SceneNodeControll: React.FC<SceneNodeControllProps> = ({
   }
 };
 
-type SceneNodeControllProps = {
+type BaseNodeControllProps = {
   node: BaseElement | TextElement;
   rootSceneIndex: number;
   path: number[];
