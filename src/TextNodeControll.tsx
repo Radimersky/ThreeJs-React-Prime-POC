@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { SceneUpdateContext } from './SceneContextProvider';
+import { SceneUpdateContext } from './contextProviders/SceneContextProvider';
 import { BaseElement } from './types/SceneTypes';
 import {
   getTextElement,

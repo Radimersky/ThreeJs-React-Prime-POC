@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { CanvasContext } from './CanvasContextProvider';
+import { CanvasContext } from './contextProviders/CanvasContextProvider';
 import { degreesToEuler, scalePoint3D } from './MathUtils';
 import {
   getAttributesOrThrow,

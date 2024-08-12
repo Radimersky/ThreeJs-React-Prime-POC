@@ -8,10 +8,13 @@ import {
   selectElementOrThrow,
   getAttributesOrThrow,
 } from './SceneTreeTraversalHelpers';
-import { CanvasContext } from './CanvasContextProvider';
+import { CanvasContext } from './contextProviders/CanvasContextProvider';
 import { Size } from './types/Size';
 import { SceneGroupNode } from './SceneGroupNode';
-import { SceneContext, SceneUpdateContext } from './SceneContextProvider';
+import {
+  SceneContext,
+  SceneUpdateContext,
+} from './contextProviders/SceneContextProvider';
 import { BaseNodeControll } from './BaseNodeControll';
 import { convertToXml } from './MathUtils';
 
@@ -33,7 +36,6 @@ export const CanvasContainer: React.FC = () => {
 
   const handleParsedScenes = useCallback(
     (scenes: RootSceneElement[]) => {
-      console.log(scenes);
       if (scenes.length > 0) {
         setNewRootSceneElements(scenes);
         setSceneSize(getSceneSize(scenes[0]));

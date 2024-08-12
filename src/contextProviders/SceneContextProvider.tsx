@@ -1,6 +1,10 @@
 import { createContext, useState } from 'react';
-import { BaseElement, RootSceneElement, TextElement } from './types/SceneTypes';
-import { getSceneFromRootElementOrThrow } from './SceneTreeTraversalHelpers';
+import {
+  BaseElement,
+  RootSceneElement,
+  TextElement,
+} from '../types/SceneTypes';
+import { getSceneFromRootElementOrThrow } from '../SceneTreeTraversalHelpers';
 
 type SceneUpdateContext = [
   (

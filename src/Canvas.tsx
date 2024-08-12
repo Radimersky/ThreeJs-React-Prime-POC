@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { CanvasContext } from './CanvasContextProvider';
+import { CanvasContext } from './contextProviders/CanvasContextProvider';
 import { CANVAS_BACKGROUND, MAX_CANVAS_SIZE } from './Constants';
 import { calculateCanvasScalingFactor } from './MathUtils';
 import { Size } from './types/Size';

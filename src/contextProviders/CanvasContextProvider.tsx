@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { Size } from './types/Size';
+import { Size } from '../types/Size';
 
 type CanvasContext = [
   Size | null,
