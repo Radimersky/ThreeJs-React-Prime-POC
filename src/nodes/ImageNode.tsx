@@ -4,7 +4,7 @@ import { degreesToEuler, scalePoint3D } from '../misc/MathUtils';
 import {
   getAttributesOrThrow,
   selectBaseElementChildOrThrow,
-} from '../misc/SceneTreeTraversalHelpers';
+} from '../misc/SceneSelectors';
 import { convertToVector } from '../misc/TypeConverters';
 import { Point3D } from '../types/Point';
 import { BaseElement } from '../types/SceneTypes';

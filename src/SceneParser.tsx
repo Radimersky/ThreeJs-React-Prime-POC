@@ -7,7 +7,7 @@ import { stringToNumberOrThrow } from './misc/TypeConverters';
 import {
   selectTextElementValueOrThrow,
   getSceneFromRootElementOrThrow,
-} from './misc/SceneTreeTraversalHelpers';
+} from './misc/SceneSelectors';
 
 const SceneParser: React.FC<SceneParserProps> = ({ onScenesParsed }) => {
   const [scenes, setScenes] = useState<RootSceneElement[]>([]);

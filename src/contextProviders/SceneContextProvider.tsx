@@ -4,7 +4,7 @@ import {
   RootSceneElement,
   TextElement,
 } from '../types/SceneTypes';
-import { getSceneFromRootElementOrThrow } from '../misc/SceneTreeTraversalHelpers';
+import { getSceneFromRootElementOrThrow } from '../misc/SceneSelectors';
 
 type SceneUpdateContext = [
   (

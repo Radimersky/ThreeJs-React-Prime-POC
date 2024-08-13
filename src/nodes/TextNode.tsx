@@ -7,7 +7,7 @@ import {
   selectElementOrThrow,
   selectTextElementValue,
   selectTextElementValueOrThrow,
-} from '../misc/SceneTreeTraversalHelpers';
+} from '../misc/SceneSelectors';
 import { convertToVector, stringToNumberOrThrow } from '../misc/TypeConverters';
 import { Point3D } from '../types/Point';
 import { BaseElement } from '../types/SceneTypes';

@@ -2,7 +2,7 @@ import { createImageUrlKey } from '../misc/HelperFunctions.ts';
 import { BaseElement } from '../types/SceneTypes';
 import FileReaderComponent from '../FileReaderComponent';
 import { ReadMode } from '../types/ReadMode';
-import { selectTextElementValue } from '../misc/SceneTreeTraversalHelpers';
+import { selectTextElementValue } from '../misc/SceneSelectors.tsx';
 import { useImageUrl } from '../UseImageUrl';
 
 export const ImageNodeControll: React.FC<ImageNodeControllProps> = ({

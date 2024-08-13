@@ -7,7 +7,7 @@ import {
   getSceneFromRootElementOrThrow,
   selectElementOrThrow,
   getAttributesOrThrow,
-} from './misc/SceneTreeTraversalHelpers';
+} from './misc/SceneSelectors';
 import { CanvasContext } from './contextProviders/CanvasContextProvider';
 import { Size } from './types/Size';
 import { SceneGroupNode } from './nodes/SceneGroupNode';
