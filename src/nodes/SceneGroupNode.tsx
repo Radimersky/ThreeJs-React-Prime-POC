@@ -3,7 +3,7 @@ import {
   selectElementOrThrow,
   getAttributesOrThrow,
   selectBaseElementChildOrThrow,
-} from '../SceneTreeTraversalHelpers';
+} from '../misc/SceneTreeTraversalHelpers';
 import { Point3D } from '../types/Point';
 import { scalePoint3D, degreesToEuler } from '../misc/MathUtils';
 import { convertToVector } from '../misc/TypeConverters';

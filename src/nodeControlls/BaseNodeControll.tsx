@@ -1,4 +1,4 @@
-import { isTextElement } from '../SceneTreeTraversalHelpers';
+import { isTextElement } from '../misc/SceneTreeTraversalHelpers';
 import { BaseElement, TextElement } from '../types/SceneTypes';
 import { TextNodeControll } from './TextNodeControll';
 import { ImageNodeControll } from './ImageNodeControll';

@@ -1,4 +1,8 @@
-import { BaseElement, TextElement, RootSceneElement } from './types/SceneTypes';
+import {
+  BaseElement,
+  TextElement,
+  RootSceneElement,
+} from '../types/SceneTypes';
 
 export const getSceneFromRootElementOrThrow = (
   rootElement: RootSceneElement,

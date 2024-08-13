@@ -6,7 +6,7 @@ import {
   selectBaseElementChildOrThrow,
   selectTextElementValue,
   selectTextElementValueOrThrow,
-} from '../SceneTreeTraversalHelpers';
+} from '../misc/SceneTreeTraversalHelpers';
 
 export const TextNodeControll: React.FC<TextNodeControllProps> = ({
   path,
