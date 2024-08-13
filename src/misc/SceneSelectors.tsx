@@ -152,18 +152,6 @@ export const getTextElement = (
   return childElement;
 };
 
-export const getTextElementOrThrow = (
-  textElementParrent: BaseElement,
-): TextElement => {
-  const element = getTextElement(textElementParrent);
-
-  if (!element) {
-    throw new Error('Text element not found.');
-  }
-
-  return element;
-};
-
 export const selectElement = (
   root: BaseElement,
   namePath: string[],
