@@ -5,7 +5,7 @@ import {
   getAttributesOrThrow,
   selectBaseElementChildOrThrow,
 } from '../SceneTreeTraversalHelpers';
-import { convertToVector } from '../TypeConverters';
+import { convertToVector } from '../misc/TypeConverters';
 import { Point3D } from '../types/Point';
 import { BaseElement } from '../types/SceneTypes';
 import { Image } from '@react-three/drei';

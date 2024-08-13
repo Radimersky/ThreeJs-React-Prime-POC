@@ -8,7 +8,7 @@ import {
   selectTextElementValue,
   selectTextElementValueOrThrow,
 } from '../SceneTreeTraversalHelpers';
-import { convertToVector, stringToNumberOrThrow } from '../TypeConverters';
+import { convertToVector, stringToNumberOrThrow } from '../misc/TypeConverters';
 import { Point3D } from '../types/Point';
 import { BaseElement } from '../types/SceneTypes';
 import { Text } from '@react-three/drei';

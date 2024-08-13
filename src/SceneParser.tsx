@@ -3,7 +3,7 @@ import FileReaderComponent from './FileReaderComponent';
 import { xml2js } from 'xml-js';
 import { ReadMode } from './types/ReadMode';
 import { RootSceneElement } from './types/SceneTypes';
-import { stringToNumberOrThrow } from './TypeConverters';
+import { stringToNumberOrThrow } from './misc/TypeConverters';
 import {
   selectTextElementValueOrThrow,
   getSceneFromRootElementOrThrow,

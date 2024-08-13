@@ -6,7 +6,7 @@ import {
 } from '../SceneTreeTraversalHelpers';
 import { Point3D } from '../types/Point';
 import { scalePoint3D, degreesToEuler } from '../misc/MathUtils';
-import { convertToVector } from '../TypeConverters';
+import { convertToVector } from '../misc/TypeConverters';
 import { useContext } from 'react';
 import { CanvasContext } from '../contextProviders/CanvasContextProvider';
 import { BaseNode } from './BaseNode';
