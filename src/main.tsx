@@ -5,7 +5,7 @@ import './css/CanvasToolbar.css';
 import { CanvasContextProvider } from './contextProviders/CanvasContextProvider.tsx';
 import { CanvasContainer } from './CanvasContainer.tsx';
 import { SceneContextProvider } from './contextProviders/SceneContextProvider.tsx';
-import { ImageUrlProvider } from './UseImageUrl.tsx';
+import { ImageUrlProvider } from './contextProviders/ImageUrlProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
