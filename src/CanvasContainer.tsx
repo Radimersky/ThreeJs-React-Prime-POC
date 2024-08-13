@@ -16,7 +16,7 @@ import {
   SceneUpdateContext,
 } from './contextProviders/SceneContextProvider';
 import { BaseNodeControll } from './nodeControlls/BaseNodeControll';
-import { convertToXml } from './MathUtils';
+import { convertToXml } from './misc/MathUtils';
 
 const getSceneSize = (rootSceneElement: RootSceneElement): Size => {
   const scene = getSceneFromRootElementOrThrow(rootSceneElement);

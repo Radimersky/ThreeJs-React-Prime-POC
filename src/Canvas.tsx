@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { CanvasContext } from './contextProviders/CanvasContextProvider';
 import { CANVAS_BACKGROUND, MAX_CANVAS_SIZE } from './Constants';
-import { calculateCanvasScalingFactor } from './MathUtils';
+import { calculateCanvasScalingFactor } from './misc/MathUtils';
 import { Size } from './types/Size';
 import { Canvas as ThreeCanvas } from '@react-three/fiber';
 import { OrthographicCamera } from '@react-three/drei';

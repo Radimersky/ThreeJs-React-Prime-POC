@@ -5,7 +5,7 @@ import {
   selectBaseElementChildOrThrow,
 } from '../SceneTreeTraversalHelpers';
 import { Point3D } from '../types/Point';
-import { scalePoint3D, degreesToEuler } from '../MathUtils';
+import { scalePoint3D, degreesToEuler } from '../misc/MathUtils';
 import { convertToVector } from '../TypeConverters';
 import { useContext } from 'react';
 import { CanvasContext } from '../contextProviders/CanvasContextProvider';
