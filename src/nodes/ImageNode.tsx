@@ -10,7 +10,7 @@ import { Point3D } from '../types/Point';
 import { BaseElement } from '../types/SceneTypes';
 import { Image } from '@react-three/drei';
 import { useImageUrl } from '../UseImageUrl';
-import { createImageUrlKey } from '../HelperFunctions';
+import { createImageUrlKey } from '../misc/HelperFunctions';
 import { Size } from '../types/Size';
 
 export const ImageNode: React.FC<ImageNodeProps> = ({

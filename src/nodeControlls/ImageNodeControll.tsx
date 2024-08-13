@@ -1,4 +1,4 @@
-import { createImageUrlKey } from '../HelperFunctions.ts';
+import { createImageUrlKey } from '../misc/HelperFunctions.ts';
 import { BaseElement } from '../types/SceneTypes';
 import FileReaderComponent from '../FileReaderComponent';
 import { ReadMode } from '../types/ReadMode';
